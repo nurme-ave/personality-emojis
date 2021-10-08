@@ -1,9 +1,9 @@
 
 // TODO LIST:
-// 1. add more features (have emojis saved in localStorage)
+// 1. add more features (have emojis saved in localStorage) - ✔️
 // 2. different emoji groups saved in localStorage and not hardcoded
 // 3. extract if-conditionals in a function (lines 31, 39)
-// 4. reduced event handlers on one line depends on the action (push, pop etc)
+// 4. reduce event handlers on one line depends on the action (push, pop etc) - modifyEmojis("push", emoji)
 // 5. redesign the page
 // 💻 🚴 🔥 ✔️ 🎵
 
