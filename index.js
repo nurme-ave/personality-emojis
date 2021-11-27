@@ -1,4 +1,3 @@
-
 // TODO LIST:
 // 1. add more features (have emojis saved in localStorage) - ✔️
 // 2. different emoji groups saved in localStorage and not hardcoded
@@ -7,23 +6,23 @@
 // 5. redesign the page
 // 💻 🚴 🔥 ✔️ 🎵
 
-let myEmojis = [];
+let myEmojis = []
 
-const emojiContainer = document.querySelector("#emoji-container");
-const emojiInput = document.querySelector("#emoji-input");
-const pushBtn = document.querySelector("#push-btn");
-const unshiftBtn = document.querySelector("#unshift-btn");
-const popBtn = document.querySelector("#pop-btn");
-const shiftBtn = document.querySelector("#shift-btn");
-const emojisFromLocalStorage = JSON.parse(localStorage.getItem("myEmojis"));
+const emojiContainer = document.querySelector('#emoji-container')
+const emojiInput = document.querySelector('#emoji-input')
+const pushBtn = document.querySelector('#push-btn')
+const unshiftBtn = document.querySelector('#unshift-btn')
+const popBtn = document.querySelector('#pop-btn')
+const shiftBtn = document.querySelector('#shift-btn')
+const emojisFromLocalStorage = JSON.parse(localStorage.getItem('myEmojis'))
 
 if (emojisFromLocalStorage) {
-  myEmojis = emojisFromLocalStorage;
-  render(myEmojis);
+  myEmojis = emojisFromLocalStorage
+  render(myEmojis)
 }
 
 function render(arr) {
-  let emojis = "";
+  let emojis = ''
   for (let i = 0; i < arr.length; i++) {
     emojis += `
       <span>
@@ -31,37 +30,32 @@ function render(arr) {
       </span>
     `
   }
-  emojiContainer.innerHTML = emojis;
+  emojiContainer.innerHTML = emojis
 }
 
-render(myEmojis);
-
-pushBtn.addEventListener("click", () => {
+function modify(action) {
   if (emojiInput.value) {
-    myEmojis.push(emojiInput.value);
-    emojiInput.value = "";
-    localStorage.setItem("myEmojis", JSON.stringify(myEmojis))
-    render(myEmojis);
+    myEmojis[action](emojiInput.value)
+    emojiInput.value = ''
+  } else {
+    myEmojis[action]()
   }
-});
-
-unshiftBtn.addEventListener("click", () => {
-  if (emojiInput.value) {
-    myEmojis.unshift(emojiInput.value);
-    emojiInput.value = "";
-    localStorage.setItem("myEmojis", JSON.stringify(myEmojis))
-    render(myEmojis);
-  }
-});
-
-popBtn.addEventListener("click", () => {
-  myEmojis.pop();
   localStorage.setItem("myEmojis", JSON.stringify(myEmojis))
-  render(myEmojis);
-});
+  render(myEmojis)
+}
 
-shiftBtn.addEventListener("click", () => {
-  myEmojis.shift();
-  localStorage.setItem("myEmojis", JSON.stringify(myEmojis))
-  render(myEmojis);
-});
+pushBtn.addEventListener('click', () => {
+  modify('push')
+})
+
+unshiftBtn.addEventListener('click', () => {
+  modify('unshift')
+})
+
+popBtn.addEventListener('click', () => {
+  modify('pop')
+})
+
+shiftBtn.addEventListener('click', () => {
+  modify('shift')
+})
